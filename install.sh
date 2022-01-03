@@ -45,7 +45,7 @@ Options:
 function install_dependencies {
     log "IN" "Update APT and installing Bind9 package"
     apt update
-    apt install DEBIAN_FRONTEND=noninteractive bind9 logrotate dnsutils systemctl -y
+    DEBIAN_FRONTEND=noninteractive apt install bind9 logrotate dnsutils systemctl -y
 }
 
 # Setup any paths that are required, such as log path
