@@ -1,2 +1,2 @@
 #!/bin/bash
-./configure.sh oidc.mk 172.17.0.2
+./configure.sh openlan.mk 172.17.0.2
