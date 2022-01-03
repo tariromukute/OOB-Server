@@ -46,24 +46,39 @@ function update_configs {
     log "IN" "Updating all Bind9 configurations"
     local -r BASE_BIND_PATH="/etc/bind"
 
-    log "DB" "Adding db.local to ${BASE_BIND_PATH}/db.local"
-    verify_file_exists "${BASE_BIND_PATH}/db.local"
-    truncate -s 0 ${BASE_BIND_PATH}/db.local
-    awk -v domain_name="${DOMAIN_NAME}" -v domain_ip="${DOMAIN_IP}" '{ gsub("DOMAIN_NAME", domain_name); gsub("DOMAIN_IP", domain_ip); print $0 }' "${PWD}/_config/db.local" > "${BASE_BIND_PATH}/db.local"
+    # log "DB" "Adding db.local to ${BASE_BIND_PATH}/db.local"
+    # verify_file_exists "${BASE_BIND_PATH}/db.local"
+    # truncate -s 0 ${BASE_BIND_PATH}/db.local
+    # awk -v domain_name="${DOMAIN_NAME}" -v domain_ip="${DOMAIN_IP}" '{ gsub("DOMAIN_NAME", domain_name); gsub("DOMAIN_IP", domain_ip); print $0 }' "${PWD}/_config/db.local" > "${BASE_BIND_PATH}/db.local"
 
     # Add the domain zone into the list of zones to have permission to answer to queries
     echo "
 zone \"${DOMAIN_NAME}\" {
       type master;
-      file \"/etc/bind/db.local\";
+      file \"/etc/bind/db.${DOMAIN_NAME}\";
 };
-    " >> "${BASE_BIND_PATH}/named.conf.default-zones"
+    " >> "${BASE_BIND_PATH}/named.conf.local"
 
 
     log "DB" "Adding named.conf.options to ${BASE_BIND_PATH}/named.conf.options"
     verify_file_exists "${BASE_BIND_PATH}/named.conf.options"
     truncate -s 0 "${BASE_BIND_PATH}/named.conf.options"
     cat "${PWD}/_config/named.conf.options" > "${BASE_BIND_PATH}/named.conf.options"
+
+    echo "
+$TTL   604800
+@	IN	SOA	${DOMAIN_NAME}.	root.${DOMAIN_NAME}.(
+         2019032700   ; Serial    
+          604800      ; Refresh
+           86400      ; Retry
+         2419200      ; Expire
+          604800 )    ; Negative Cache TTL
+;
+@	IN	NS	ns.${DOMAIN_NAME}
+@	IN	A	${DOMAIN_IP}
+@	IN	AAAA	::1
+ns  IN  A   ${DOMAIN_IP} 
+    " >> "${BASE_BIND_PATH}/db.${DOMAIN_NAME}"
 
     log "DB" "Creating named.conf.log and including it in named.conf"
     touch "${BASE_BIND_PATH}/named.conf.log"

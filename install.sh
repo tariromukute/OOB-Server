@@ -45,7 +45,7 @@ Options:
 function install_dependencies {
     log "IN" "Update APT and installing Bind9 package"
     apt update
-    apt install bind9 logrotate systemctl -y
+    apt install bind9 logrotate dnsutils systemctl -y
 }
 
 # Setup any paths that are required, such as log path
