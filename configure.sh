@@ -74,7 +74,7 @@ zone \"${DOMAIN_NAME}\" {
             2419200             ; Expire
             604800 )            ; Negative Cache TTL
 ;
-@	IN	NS	ns.${DOMAIN_NAME}
+@	IN	NS	ns.${DOMAIN_NAME}.
 @	IN	A	${DOMAIN_IP}
 @	IN	AAAA	::1
 ns  IN  A   ${DOMAIN_IP} 
