@@ -7,6 +7,12 @@
       ]
     },
     {
+      "event": "CONFIGURE",
+      "lifecycle_events": [
+        "configure_openlan.sh"
+      ]
+    },
+    {
       "event": "START",
       "lifecycle_events": [
         "start.sh"

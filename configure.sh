@@ -66,13 +66,13 @@ zone \"${DOMAIN_NAME}\" {
     cat "${PWD}/_config/named.conf.options" > "${BASE_BIND_PATH}/named.conf.options"
 
     echo "
-$TTL   604800
+\$TTL   604800
 @	IN	SOA	${DOMAIN_NAME}.	root.${DOMAIN_NAME}.(
-         2019032700   ; Serial    
-          604800      ; Refresh
-           86400      ; Retry
-         2419200      ; Expire
-          604800 )    ; Negative Cache TTL
+            2019032700          ; Serial    
+            604800              ; Refresh
+            86400               ; Retry
+            2419200             ; Expire
+            604800 )            ; Negative Cache TTL
 ;
 @	IN	NS	ns.${DOMAIN_NAME}
 @	IN	A	${DOMAIN_IP}
