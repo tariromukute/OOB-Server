@@ -1,4 +1,3 @@
-#!/bin/bash
 # Bind9 Basic Setup
 #
 # Description: The following shell script sets up Bind9 with basic configuration
