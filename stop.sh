@@ -14,7 +14,7 @@ source "$(dirname "$0")/inc/color.sh"
 # Update all Bind9 (and other) configs to setup
 function stop_named {
     log "IN" "Restarting Bind9 service"
-    systemctl stop named
+    service named stop
 }
 
 function main {

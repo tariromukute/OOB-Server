@@ -17,7 +17,7 @@ function start_named {
     logrotate -d "/etc/logrotate.d/bind"
 
     log "IN" "Restarting Bind9 service"
-    systemctl restart named
+    service named start
 }
 
 function main {
