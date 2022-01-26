@@ -18,6 +18,8 @@ function start_named {
 
     log "IN" "Restarting Bind9 service"
     service named start
+
+    service named restart # Seems to actually start after running restart
 }
 
 function main {
