@@ -1,7 +1,7 @@
 logging {
   channel bind_log {
     file "/var/log/named/named.log" versions 3 size 5m;
-    severity error;
+    severity info;
     print-category yes;
     print-severity yes;
     print-time yes;
