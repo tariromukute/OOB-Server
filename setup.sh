@@ -47,15 +47,4 @@ function main {
     update_configs
 }
 
-# Preflight checks
-
-# Show usage if no arguments are passed
-if [ "$1" = "" ]; then
-    usage_general
-fi
-
-case $1 in
-    -h | --help ) usage_general
-esac
-
 main

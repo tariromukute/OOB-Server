@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup the bind9
-./setup
+./setup.sh
 
 for j in {1..200}
 do
