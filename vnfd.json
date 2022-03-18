@@ -9,7 +9,7 @@
     {
       "event": "CONFIGURE",
       "lifecycle_events": [
-        "configure_openlan.sh"
+        "configure.sh"
       ]
     },
     {
